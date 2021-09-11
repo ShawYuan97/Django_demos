@@ -33,4 +33,9 @@ urlpatterns = [
     # 事务子路由
     path('affair/', include('affair.urls')),
 
+    # 仿真系统子路由
+    path('neuromorphic/', include('neuromorphic.urls')),
+
+    # 子路由
+
 ]

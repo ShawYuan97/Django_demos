@@ -4,6 +4,7 @@ from django.conf import settings
 from django.http import HttpResponse, StreamingHttpResponse, Http404
 from django.shortcuts import render
 from django.utils.encoding import escape_uri_path
+from login.base import checkLogin
 from login.models import User
 
 from . import forms
@@ -15,6 +16,7 @@ def affair_index_view(request):
     return render(request, 'affair/index.html', locals())
 
 
+@checkLogin
 def submit_View(request):
     message = ''
     if request.method == 'POST':
@@ -40,11 +42,13 @@ def submit_View(request):
     return render(request, 'affair/submit_file.html', locals())
 
 
+@checkLogin
 def downfile_View(request):
     all_files = models.Submit_File_Model.objects.all()
     return render(request, 'affair/filedown.html', locals())
 
 
+@checkLogin
 def downonefile(request, id):
     try:
         file_instance = models.Submit_File_Model.objects.get(id=id)
