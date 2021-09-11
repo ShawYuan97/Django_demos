@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+</head>
+<body>
+
+{%if message %}
+<script>
+    alert('{{message}}')
+</script>
+{% endif %}
+
+
+<h1>欢迎{{request.session.user_name}},提交你的ppt</h1>
+<form action="/affair/submit_file" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <p><input type="submit" value="提交"></p>
+</form>
+<p><a href="/index">返回首页</a></p>
+</body>
+</html>
